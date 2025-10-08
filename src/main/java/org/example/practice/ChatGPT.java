@@ -12,7 +12,8 @@ public class ChatGPT {
     public static void main(String[] args) {
         // The library will read OPENAI_API_KEY from environment when using fromEnv()
         //OpenAIClient client = OpenAIOkHttpClient.fromEnv();
-        String apiKey = "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";
+        //set the key in env first
+        String apiKey = System.getenv("OPENAI_API_KEY");
 
         // Create client explicitly with key
         OpenAIClient client = OpenAIOkHttpClient.builder()
