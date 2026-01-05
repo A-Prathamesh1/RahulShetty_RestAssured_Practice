@@ -243,7 +243,11 @@ public class LambdaDemo {
 
         //Find largest prime factor using lambda
 
+        // integer to binary using lambda expression
+        int n = 10;
+        Function<Integer, String> decToBin = Integer::toBinaryString;
 
+        System.out.println(n + " in binary: " + decToBin.apply(n));
     }
 
 
