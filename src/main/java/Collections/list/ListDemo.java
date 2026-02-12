@@ -38,6 +38,11 @@ public class ListDemo {
         System.out.println("capacity trimmed to size: " + sL.size());
         // contains
         System.out.println("does it contain apple: " + sL.contains("Apple"));
+
+        // insert at specific index of list
+        System.out.println("Original List: " + sL);
+        sL.add(2, "Guava");
+        System.out.println("After inserting: " + sL);
         ///  iterating
         // index based
         for (int i = 0; i < sL.size(); i++) {
