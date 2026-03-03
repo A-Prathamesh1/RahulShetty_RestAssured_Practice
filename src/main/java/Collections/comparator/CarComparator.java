@@ -5,6 +5,7 @@ import java.util.Comparator;
 public class CarComparator implements Comparator<Car> {
     @Override
     public int compare(Car o1, Car o2) {
+        System.out.println("CarComparator called by year");
         return Integer.compare(o1.year, o2.year);
     }
 }

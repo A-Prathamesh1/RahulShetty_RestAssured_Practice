@@ -1,6 +1,8 @@
 package Collections.set;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 public class SetDemo {
     public static void main(String[] args) {
@@ -115,6 +117,43 @@ public class SetDemo {
 
         // does set contain 3
         System.out.println("does set contain 3: " + iSet.contains(3));
+
+
+//     | Feature     | HashSet             | TreeSet      |   LinkedHashSet |
+//     |—————————————|—————————————————————|——————————————|——————————————-——|
+//     | Order       | No guaranteed order | Sorted order | Insertion order |
+//     | Performance | O(1) average        | O(log n)     | O(1) average    |
+//     | Thread-Safe | No                  |     No       |     No          |
+//     | Null Values | Allows              | Does not allow |   Allows      |
+//     | Comparable  | No                  | Yes (elements must b comparable) | No |
+
+
+// | Feature              | HashSet                     | LinkedHashSet                      | TreeSet                          |
+// |——————————————————————|———————————————|——————————————————————————|——————————————————————————|
+// | Internal Structure    | Hash table (HashMap)        | Hash table + Doubly linked list    | Red-Black Tree (Balanced BST)    |
+// | Ordering              | No order                    | Insertion order maintained         | Sorted (natural/comparator order)|
+// | Null Allowed          | Yes (only one null)         | Yes (only one null)                | No (throws NullPointerException) |
+// | Access Time           | O(1) average                | O(1) average                       | O(log n)                         |
+// | Insertion/Deletion    | O(1) average                | O(1) average                       | O(log n)                         |
+// | Thread-Safe           | No                          | No                                 | No                               |
+// | Duplicate Allowed     | No                          | No                                 | No                               |
+// | Use Case              | Fast lookup, no order       | Maintain insertion order           | Sorted unique elements           |
+
+
+        // Collections.synchronizedSet() allows synchronized options
+        Set<Integer> syncHashSet = Collections.synchronizedSet(new HashSet<>());
+
+        Set<Integer> syncLinkedHashSet = Collections.synchronizedSet(new LinkedHashSet<>());
+
+        Set<Integer> syncTreeSet = Collections.synchronizedSet(new TreeSet<>());
+
+        // for high concurrency hashset
+        Set<Integer> concurrentSet = ConcurrentHashMap.newKeySet();
+
+        // for high concurrency treeSet
+        Set<Integer> concurrentSortedSet = new ConcurrentSkipListSet<>();
+
+        // no option available for linkedHashSet but Collections.synchronizedSet(new LinkedHashSet<>());
 
     }
 }

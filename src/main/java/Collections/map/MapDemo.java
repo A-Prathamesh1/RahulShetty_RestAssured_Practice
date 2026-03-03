@@ -128,5 +128,38 @@ public class MapDemo {
         String s1 = hm.putIfAbsent(2, "eee");
         System.out.println(s1);
         System.out.println("getting 2 : " + hm.get(2));
+
+
+        // | Feature              | HashMap                         | LinkedHashMap                           | TreeMap                               |
+// |——————————————————————|———————————————————————|——————————————————————————|——————————————————————————|
+// | Internal Structure    | Hash table (array + buckets)    | Hash table + Doubly linked list         | Red-Black Tree (Balanced BST)         |
+// | Ordering              | No order                        | Insertion order (or access order)       | Sorted (natural/comparator order)     |
+// | Null Keys             | One null key allowed            | One null key allowed                    | No null key allowed                   |
+// | Null Values           | Multiple null values allowed    | Multiple null values allowed            | Null values allowed                   |
+// | Access Time (get)     | O(1) average                    | O(1) average                            | O(log n)                              |
+// | Insertion/Deletion    | O(1) average                    | O(1) average                            | O(log n)                              |
+// | Thread-Safe           | No                              | No                                      | No                                    |
+// | Duplicate Keys        | No (overwrites existing key)    | No (overwrites existing key)            | No (based on comparison logic)        |
+// | Use Case              | Fast lookup                     | Maintain insertion/access order         | Sorted keys / range queries           |
+
+
+        // since none of hashMap LinkedHashMap or TreeMap are thread safe
+
+        // alternatives
+        // for hashMap
+        Map<String, Integer> syncHashMap = Collections.synchronizedMap(new HashMap<>());
+        // for linkedHashMap
+        Map<String, Integer> syncLinkedHashMap = Collections.synchronizedMap(new LinkedHashMap<>());
+        // for treemap
+        Map<String, Integer> syncTreeMap = Collections.synchronizedMap(new TreeMap<>());
+
+        // for HashMap another modern alternative is ConcurrentHashMap<>()
+        Map<String, Integer> conHashMap = new ConcurrentHashMap<>();
+
+        // for LinkedHashMap there is no modern alternative but Collections.synchronizedMap(new LinkedHashMap<>())
+
+        // for TreeMap modern alternative is ConcurrentSkipListMap
+        Map<String, Integer> conTreeMap = new ConcurrentSkipListMap<>();
+
     }
 }

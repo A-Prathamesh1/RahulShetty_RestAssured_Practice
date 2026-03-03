@@ -12,5 +12,15 @@ public class Factorial {
             n--;
         }
         System.out.println(fact);
+
+        System.out.println("factorial of 5: " + facto(1));
+    }
+
+    // recursive factorial
+    public static int facto(int n) {
+        if (n == 1 || n == 0) { // base condition
+            return 1;
+        }
+        return n *= facto(n - 1); // recursive call
     }
 }

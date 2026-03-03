@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Listeners.TestNGListener">
+    <listeners>
+        <listener class-name="Listeners.TestNGListener"/>
+        <listener class-name="Listeners.SuiteListener"/>
+        <!-- following : Rerun the failed testng-failed.xml-->
+        <listener class-name="org.testng.reporters.FailedReporter"/>
+        <!-- following : Generates a simple HTML summary report.-->
+        <listener class-name="org.testng.reporters.EmailableReporter2"/>
+    </listeners>
+    <test verbose="2" preserve-order="true"
+          name="C:/Users/prath/Documents/Job/New Company/New folder/RahulShetty_RestAssured_Practice/src/test/java/Listeners.TestNGListener.java">
+        <groups>
+            <run>
+                <include name="smoke"/>
+                <exclude name=""/>
+            </run>
+        </groups>
+
+        <classes>
+            <!--<class name="some class name"></class>-->
+        </classes>
+    </test>
+    <test name="regression test">
+        <groups>
+            <run>
+                <include name="regression"/>
+                <exclude name="skip"/>
+            </run>
+        </groups>
+        <classes>
+            <!--<class name=""></class>-->
+        </classes>
+    </test>
+</suite>

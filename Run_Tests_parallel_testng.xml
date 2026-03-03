@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Run Tests parallel" parallel="tests" thread-count="2">
+    <!-- parameter -->
+    <parameter name="browser" value="Chrome"/>
+    <parameter name="baseURL" value="http://www.example.com"/>
+
+    <!-- tests -->
+    <test verbose="2" preserve-order="true" name="smoke tests" parallel="classes" thread-count="2">
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <!--<class name=""/>
+            <class name=""/>-->
+        </classes>
+    </test>
+    <test name="regression tests">
+        <groups>
+            <run>
+                <include name="regression"/>
+                <exclude name="skip"/>
+            </run>
+        </groups>
+        <classes>
+            <!--<class name=""></class>-->
+        </classes>
+    </test>
+</suite>

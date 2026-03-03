@@ -11,5 +11,7 @@ public class RunTimePolyDemo {
         A c = new B();
         c.show(); // from B show
 
+        //can we create child class reference variable and object of parent class
+        // B b1 = new A();     we cant create
     }
 }

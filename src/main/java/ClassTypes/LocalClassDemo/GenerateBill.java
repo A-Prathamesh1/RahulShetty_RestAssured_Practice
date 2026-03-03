@@ -4,7 +4,7 @@ public class GenerateBill {
     private int billAmount = 10;
 
     public void calcTax() {
-        class CalcTax {
+        class CalcTax { // local class
             public int calc() {
                 billAmount += (0.10 * billAmount);
                 return billAmount;

@@ -18,6 +18,7 @@ public class Car implements Comparator<Car> {
 
     @Override
     public int compare(Car c1, Car c2) {
+        System.out.println("car comparator from class called by year");
         return Integer.compare(c1.year, c2.year);//c1.toString().compareTo(c2.toString());
     }
 }

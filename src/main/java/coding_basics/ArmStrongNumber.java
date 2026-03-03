@@ -3,6 +3,7 @@ package coding_basics;
 public class ArmStrongNumber {
     public static void main(String[] args) {
         int n = 153;
+        int n1 = n;
         int temp;
         int sum = 0;
         while (n > 0) {
@@ -11,10 +12,10 @@ public class ArmStrongNumber {
             n = n / 10;
         }
 
-        if (n == sum) {
-            System.out.println(n + " is a armstrong number");
-        }else{
-            System.out.println(n + " is not a armstrong number");
+        if (n1 == sum) {
+            System.out.println(n1 + " is a armstrong number");
+        } else {
+            System.out.println(n1 + " is not a armstrong number");
         }
     }
 }

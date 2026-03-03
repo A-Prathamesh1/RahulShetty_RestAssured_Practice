@@ -15,6 +15,9 @@ class B extends A {
 
 class AnonymousInnerClassDemo {
     public static void main(String[] args) {
+        /* This is the way to override the implementation of A's show, through anonymous inner class
+        no class name, just necessary overriding method, avoiding creation of class B (who's job was to provide just own implementation of show())
+        * */
         A a = new A() {
             public void show() {
                 System.out.println("Inside overridden show");

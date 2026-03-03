@@ -16,5 +16,13 @@ public class ReverseAString {
         String s1 = sb.toString();
         System.out.println(s1);
 
+        System.out.println("reverse of apple: " + recReverse("apple"));
+    }
+
+    public static String recReverse(String s) {
+        if (s == null || s.length() <= 1) {
+            return s;
+        }
+        return recReverse(s.substring(1)) + s.charAt(0);
     }
 }

@@ -1,13 +1,11 @@
 package StreamAPI;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StreamDemo {
@@ -17,6 +15,8 @@ public class StreamDemo {
         // filter even numbers
         // double them
         // add them
+
+        // anonymous inner class implementing the functional interface> Predicate with its only method test
         Predicate<Integer> p1 = new Predicate<Integer>() {
             public boolean test(Integer n) {
                 return n % 2 == 0;
@@ -106,6 +106,52 @@ public class StreamDemo {
             System.out.print(", " + it.next());
         }
 
+        // Collectors class: Utility class to collect results into collections
+        List<String> browsers = Arrays.asList("Chrome", "Firefox", "Safari", "Edge");
+
+        // collect(Collectors.toList()) : collects result into a List
+        List<String> liOfBrowsers = browsers.stream().collect(Collectors.toList());
+        List<String> liOfBrowsers1 = browsers.stream().toList();
+
+        // collect(Collectors.toSet())
+        Set<String> setOfBrow = browsers.stream().collect(Collectors.toSet());
+
+        // toMap()
+        Map<String, Integer> m = browsers.stream().collect(Collectors.toMap(k -> k, String::length));
+        System.out.println("map of browser names to lengths: " + m);
+
+        // Collectors.groupingBy()
+        Map<Integer, List<String>> browserByLength = browsers.stream().collect(Collectors.groupingBy(String::length));
+        System.out.println("brow grouped by the lengths: " + browserByLength);
+
+        //Collectors.partitioningBy()
+        Map<Boolean, List<String>> partitionedByLength = browsers.stream().collect(Collectors.partitioningBy(brow -> brow.length() > 5));
+        System.out.println("partitionedByLength: " + partitionedByLength);
+
+        // join the elements
+        String allBrowsers = browsers.stream().collect(Collectors.joining(", "));
+        String allBrowsers1 = String.join(", ", browsers);
+        System.out.println("allBrowsers: " + allBrowsers);
+
+        // Collectors.counting()
+        long countOfBrow = browsers.stream().count();
+        long countOfBrow1 = browsers.stream().collect(Collectors.counting());
+        System.out.println("count of browsers: " + countOfBrow);
+
+        // averaging int
+        double averageLenOfBrowsers1 = browsers.stream().mapToInt(String::length).average().getAsDouble();
+        double averageLenOfBrowsers = browsers.stream().collect(Collectors.averagingDouble(String::length));
+        System.out.println("avg length: " + averageLenOfBrowsers);
+
+        // Collectors.maxBy() // Collectors.minBy()
+        Optional<String> longest = browsers.stream().collect(Collectors.maxBy(Comparator.comparingInt(String::length)));
+        System.out.println("longest browser name: " + longest);
+
+        // Collectors.summarizingInt
+        IntSummaryStatistics stats = browsers.stream().collect(Collectors.summarizingInt(String::length));
+        System.out.println("average length of browsers: " + stats.getAverage());
+        System.out.println("max length of browsers: " + stats.getMax());
+        System.out.println("count no. of browsers: " + stats.getCount());
 
         // stream instance can be used only once: so following won't execute since s has been used already
         // Stream<Integer> s1 = s.filter(n -> n % 2 == 0);

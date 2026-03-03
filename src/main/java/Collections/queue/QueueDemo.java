@@ -9,7 +9,7 @@ public class QueueDemo {
         // deque: insertion & deletion can happen at both ends
 
         /**
-         * LinkedList as Queue: FIFO
+         * Default Data structure : LinkedList as Queue: FIFO
          * allows null
          * moderate
          * */
@@ -20,6 +20,11 @@ public class QueueDemo {
         queue.offer("test22");
 
         System.out.println("queue before updating: " + queue);
+        System.out.println("peeking into q: " + queue.peek());
+
+        //System.out.println("removing first element: ");
+        // System.out.println("removed first ele: " + queue.poll() + " \n after removing first: " + queue);
+
 
         // sorting LinkedList queue
         // 1. by converting to priority queue
@@ -95,12 +100,15 @@ public class QueueDemo {
             System.out.println("removing: " + prioQ.poll());
         }
         //
-        /**
+        /** implementation of Dequeue interface, Deque extends Queue interface
+         * LinkedList: LL implementation with pointers to both ends
          * ArrayDeque: Double ended queue with array as base DS
          * no Nulls
          * fastest
          * */
-        Deque<String> arrDQ = new ArrayDeque<>();
+        System.out.println("************** resizable circular Array Dequeue ***************");
+
+        Deque<String> arrDQ = new ArrayDeque<>(); // internal DS: resizable circular array
         // add or offer
         arrDQ.add("first");
         arrDQ.add("second");
@@ -139,6 +147,41 @@ public class QueueDemo {
         arrDQ.pop();
         System.out.println("removing all " + arrDQ);
 
-        Queue<Integer> q = new ArrayBlockingQueue<>(10);
+        Queue<Integer> q = new ArrayBlockingQueue<>(10);// blocking queue
+        System.out.println("*************** LinkedList As Deque *********************");
+        Deque<Integer> llDq = new LinkedList<>();// internal DS: doubly linkedlist
+        llDq.addFirst(10);
+        llDq.addLast(100);
+
+        // | Feature               | Queue                                  | Deque                                      | PriorityQueue                               |
+// |——————————————————————|———————————————————————————————|———————————————————————————————|—————————————————————————————————|
+// | Type                  | Interface                              | Interface (extends Queue)                  | Concrete Class                              |
+// | Internal Structure    | Depends on implementation              | Depends on implementation                  | Binary Heap (array-based)                   |
+// | Ordering              | FIFO (First-In-First-Out)              | FIFO + LIFO (both ends accessible)         | Priority-based (natural/comparator order)   |
+// | Null Elements         | Depends on implementation              | Generally not allowed (e.g., ArrayDeque)   | Null not allowed                            |
+// | Duplicate Elements    | Allowed                                | Allowed                                    | Allowed                                     |
+// | Access Points         | Head only                              | Head and Tail                              | Head only (highest priority element)        |
+// | Access Time (peek)    | O(1)                                   | O(1)                                       | O(1)                                        |
+// | Insert/Delete Time    | O(1)                                   | O(1)                                       | O(log n)                                    |
+// | Thread-Safe           | No (unless synchronized wrapper used)  | No                                         | No                                          |
+// | Typical Implementations| LinkedList, ArrayDeque                | ArrayDeque, LinkedList                     | PriorityQueue                               |
+// | Use Case              | Task processing, BFS                   | Sliding window, stack + queue behavior     | Scheduling, top-K, priority-based tasks     |
+
+
+        // | Feature               | LinkedList (as Queue)              | ArrayDeque (as Queue)                 | PriorityQueue                          |
+        // |——————————————————————|———————————————————————————————|———————————————————————————————|———————————————————————————————|
+        // | Type                  | Concrete Class                     | Concrete Class                        | Concrete Class                         |
+        // | Interface Implemented | Queue, Deque, List                 | Queue, Deque                          | Queue                                  |
+        // | Internal Structure    | Doubly Linked List                 | Resizable Circular Array              | Binary Heap (array-based)              |
+        // | Ordering              | FIFO                               | FIFO                                  | Priority-based (natural/comparator)    |
+        // | Null Elements         | One null allowed                   | Null not allowed                      | Null not allowed                       |
+        // | Duplicate Elements    | Allowed                            | Allowed                               | Allowed                                |
+        // | Access Time (peek)    | O(1)                               | O(1)                                  | O(1) (head only)                       |
+        // | Insertion Time        | O(1)                               | O(1) amortized                        | O(log n)                               |
+        // | Deletion Time         | O(1)                               | O(1) amortized                        | O(log n)                               |
+        // | Memory Overhead       | Higher (node + 2 pointers)         | Lower (contiguous array)              | Moderate (heap array)                  |
+        // | Thread-Safe           | No                                 | No                                    | No                                     |
+        // | Best Use Case         | Frequent insert/remove anywhere    | Fast queue operations (preferred)     | Scheduling / Top-K / Priority tasks    |
+
     }
 }
